@@ -23,10 +23,11 @@ def index(request):
         user_data = Content(order_type=order_type, customer_name=customer_name,customer_address=customer_address,supplier_name=supplier_name,
                             supplier_address=supplier_address,order_date=order_date,products=products,notes=notes)
         user_data.save()
+        return redirect('generate_pdf', id=user_data.id)
 
     form = ContentForm()
-    return redirect('generate_pdf', id=user_data.id)
-    # return render(request,'app/index.html',{'form':form})
+    
+    return render(request,'app/index.html',{'form':form})
 
 def history(request):
     content = Content.objects.all()
