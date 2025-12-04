@@ -21,4 +21,6 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',(views.index), name='content'),
+    path('history/', views.history, name='history'),
+    path('history/<int:id>/', views.history_details, name='history_details')
 ]

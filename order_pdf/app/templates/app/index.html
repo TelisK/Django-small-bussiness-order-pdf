@@ -19,13 +19,15 @@
                 <form method="POST">
                     {% csrf_token %}
                     <div class="mb-3">
+                        <div>
+                            <h2>NEW ORDER</h2>
+                            <br>
+                            <hr>
                         <!-- DES EDO -->
                         <label for="" class="form-label">order_type</label>
-                        <select id="order_type" name="order_type" class="form-control">
-                            {% for value, value_name in user_data.order_type.fields.choices %}
-                            <option value={{value}}>{{value_name}}</option>
-                            {% endfor %}
-                        </select>
+
+                            {{ form.order_type }}
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">customer_name</label>
@@ -48,11 +50,6 @@
                             aria-describedby=""></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="" class="form-label">order_date</label>
-                        <input type="text" class="form-control" id="order_date" name="order_date"
-                            aria-describedby=""></textarea>
-                    </div>
-                    <div class="mb-3">
                         <label for="" class="form-label">products</label>
                         <textarea type="text" class="form-control" id="products" name="products"
                             aria-describedby=""></textarea>
@@ -63,7 +60,7 @@
                             aria-describedby=""></textarea>
                     </div>
                     <button type="submit" class="btn btn-dark">Submit</button>
-                    <button type="" class="btn btn-dark">History</button>
+                    <a href="{% url 'history' %}" class="btn btn-dark">History</a>
                 </form>
             </div>
         </div>

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Content
+from .forms import ContentForm
 
 # Create your views here.
 def index(request):
@@ -18,9 +19,15 @@ def index(request):
                             supplier_address=supplier_address,order_date=order_date,products=products,notes=notes)
         user_data.save()
 
-    return render(request,'app/index.html',{'user_data':user_data})
+    form = ContentForm()
 
-# def history(request):
-#     content = Content.objects.all()
+    return render(request,'app/index.html',{'form':form})
 
-#     return render(request,'app/index.html',{'content':content})
+def history(request):
+    content = Content.objects.all()
+
+    return render(request,'app/history.html',{'content':content})
+
+def history_details(request, id):
+    content = Content.objects.get(pk=id)
+    return render(request, 'app/history_details.html', {'content':content})

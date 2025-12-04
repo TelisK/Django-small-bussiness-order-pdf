@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+</head>
+<body>
+    <div>
+        {% for i in content %}
+        <ul>
+            <a class="btn btn-dark" href="{% url 'history_details' i.id %}">{{ i.order_date }}</a>
+        </ul>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
+
+    <!-- {% for i in content %}
+    {{ i.order_type }}
+    {% endfor %} -->
