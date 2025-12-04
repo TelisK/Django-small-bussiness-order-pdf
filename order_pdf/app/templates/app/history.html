@@ -13,12 +13,13 @@
     <div class="mt-4">
         {% for i in content %}
         <ul>
-            <a class="btn btn-dark" href="{% url 'history_details' i.id %}">{{ i.order_date}} - {{i.order_type}} - {{i.supplier_name }}</a>
+            <a class="btn btn-outline-dark" href="{% url 'history_details' i.id %}">{{ i.order_date}} - {{i.order_type}} - {{i.supplier_name }}</a>
             <a class="btn btn-dark" href="{% url 'generate_pdf' i.id %}">Download PDF</a>
-            <a class="btn btn-warning" href="{% url 'delete' i.id %}">Delete</a>
+            <a class="btn btn-secondary" href="{% url 'delete' i.id %}">Delete</a>
         </ul>
         {% endfor %}
     </div>
+    <div class="mt-4 ps-4"><a class="btn btn-dark" href="{% url 'content' %}">Back</a></div>
 
 </body>
 </html>
