@@ -3,6 +3,7 @@
 *.png
 s.py
 *.db
+db.sqlite3
 .idea/
 .venv/
 __pycache__/
