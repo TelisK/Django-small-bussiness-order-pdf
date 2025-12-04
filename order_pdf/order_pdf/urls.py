@@ -22,5 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',(views.index), name='content'),
     path('history/', views.history, name='history'),
-    path('history/<int:id>/', views.history_details, name='history_details')
+    path('history/<int:id>/', views.history_details, name='history_details'),
+    path('pdf/<int:id>/',views.generate_pdf, name='generate_pdf'),
+    path('<int:id>/delete/', views.delete, name='delete')
 ]

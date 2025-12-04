@@ -1,6 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Content
 from .forms import ContentForm
+from xhtml2pdf import pisa
+from django.template.loader import render_to_string
+from io import BytesIO
+from django.http import HttpResponse
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -20,8 +25,8 @@ def index(request):
         user_data.save()
 
     form = ContentForm()
-
-    return render(request,'app/index.html',{'form':form})
+    return redirect('generate_pdf', id=user_data.id)
+    # return render(request,'app/index.html',{'form':form})
 
 def history(request):
     content = Content.objects.all()
@@ -31,3 +36,17 @@ def history(request):
 def history_details(request, id):
     content = Content.objects.get(pk=id)
     return render(request, 'app/history_details.html', {'content':content})
+
+def generate_pdf(request, id):
+    content = Content.objects.get(pk=id)
+    html = render_to_string('app/pdf_template.html',{'content':content})
+    buffer = BytesIO()
+
+    pisa_status = pisa.CreatePDF(src=html, dest=buffer)
+    return HttpResponse(buffer.getvalue(), content_type='application/pdf')
+
+def delete(request, id):
+    content = get_object_or_404(Content, pk=id)
+    content.delete()
+    messages.success(request, "Deleted successfully")
+    return redirect('history')

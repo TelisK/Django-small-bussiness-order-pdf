@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History Details</title>
+
+    <style>
+        /* @font-face {
+        font-family: "DejaVuSansMono";
+        src: url("fonts/DejaVuSansMono.ttf");
+        }
+
+        @font-face {
+        font-family: "DejaVuSansMono";
+        src: url("c:/DejaVuSansMono.ttf") format('truetype');
+        } */
+        
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        h1 { font-size: 26px; margin-bottom: 20px; }
+        h2 { font-size: 20px; margin-bottom: 5px; }
+        h3 { font-size: 16px; margin: 5px 0; }
+
+        .row-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .col {
+            width: 50%;
+            vertical-align: top;
+            padding-right: 20px;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px solid #888;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>{{ content.order_type }} : {{ content.order_date }}</h1>
+
+    <!-- 2-column layout -->
+    <table class="row-table">
+        <tr>
+            <td class="col">
+                <h2>{{ content.order_type }} FROM:</h2>
+                <br>
+                <h3>{{ content.customer_name }}</h3>
+                <h3>{{ content.customer_address }}</h3>
+            </td>
+
+            <td class="col">
+                <h2>{{ content.order_type }} TO:</h2>
+                <br>
+                <h3>{{ content.supplier_name }}</h3>
+                <h3>{{ content.supplier_address }}</h3>
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h3>Products</h3>
+    <h4>{{ content.products }}</h4>
+
+    <hr>
+
+    <h3>Notes</h3>
+    <h4>{{ content.notes }}</h4>
+
+    <hr>
+
+    <h3>Thank you!</h3>
+
+</body>
+</html>
